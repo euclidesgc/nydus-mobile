@@ -8,6 +8,7 @@ class QrCodePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('QR Code'),
+        centerTitle: true,
       ),
       body: Container(),
     );

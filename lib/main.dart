@@ -7,7 +7,18 @@ import 'splash/splash_page.dart';
 
 void main() async {
   runApp(const SplashPage());
-  await Future.delayed(const Duration(seconds: 1));
+
+  // Carregar configurações iniciais
+  await Future.wait([
+    //Conecta firebase
+    Future.delayed(const Duration(seconds: 1)),
+    //Conecta analitics
+    Future.delayed(const Duration(seconds: 1)),
+    //Conecta crashlytics
+    Future.delayed(const Duration(seconds: 1)),
+  ]);
+
+  Modular.setInitialRoute('/login');
 
   return runApp(
     ModularApp(

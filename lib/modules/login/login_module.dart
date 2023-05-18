@@ -15,12 +15,12 @@ class LoginModule extends Module {
           child: (context, args) => const QrCodePage(),
         ),
         ChildRoute(
-          '/login',
-          child: (context, args) => const LoginPage(),
-        ),
-        ChildRoute(
           '/qr_code',
           child: (context, args) => const QrCodePage(),
+        ),
+        ChildRoute(
+          '/login',
+          child: (context, args) => const LoginPage(),
         ),
         ChildRoute(
           '/forgot_password',
