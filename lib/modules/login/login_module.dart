@@ -12,15 +12,19 @@ class LoginModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(
           '/',
-          child: (_, args) => const QrCodePage(),
+          child: (context, args) => const QrCodePage(),
         ),
         ChildRoute(
           '/login',
-          child: (_, args) => const LoginPage(),
+          child: (context, args) => const LoginPage(),
+        ),
+        ChildRoute(
+          '/qr_code',
+          child: (context, args) => const QrCodePage(),
         ),
         ChildRoute(
           '/forgot_password',
-          child: (_, args) => const ForgotPasswordPage(),
+          child: (context, args) => const ForgotPasswordPage(),
         ),
       ];
 }

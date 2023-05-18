@@ -1,8 +1,9 @@
 import 'dart:developer';
 
-import 'package:home/home.dart';
-import 'package:login/login.dart';
 import 'package:package_manager/package_manager.dart';
+
+import 'modules/home/home_module.dart';
+import 'modules/login/login_module.dart';
 
 class AppModule extends Module {
   @override
@@ -22,6 +23,7 @@ class AppModule extends Module {
   @override
   void dispose() {
     super.dispose();
+    log('🚌 EventBus finished!');
     Modular.get<EventBus>().destroy();
   }
 }

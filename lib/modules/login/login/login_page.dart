@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ForgotPasswordPage extends StatelessWidget {
-  const ForgotPasswordPage({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Esqueceu a senha?'),
-        centerTitle: true,
+        title: const Text('Login'),
       ),
       body: Container(),
     );
