@@ -18,7 +18,7 @@ void main() async {
     Future.delayed(const Duration(seconds: 1)),
   ]);
 
-  Modular.setInitialRoute('/login/');
+  Modular.setInitialRoute('/on_boarding_module/');
 
   return runApp(
     ModularApp(

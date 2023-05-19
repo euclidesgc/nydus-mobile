@@ -1,8 +1,8 @@
 import 'package:package_manager/package_manager.dart';
 
-import 'home/home_page.dart';
+import 'vacation/vacation_page.dart';
 
-class HomeModule extends Module {
+class VacationModule extends Module {
   @override
   List<Bind> get binds => [];
 
@@ -10,7 +10,7 @@ class HomeModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(
           '/',
-          child: (context, args) => const HomePage(),
+          child: (context, args) => const VacationPage(),
         ),
       ];
 }

@@ -3,8 +3,9 @@ import 'package:package_manager/package_manager.dart';
 import 'forgot_password/forgot_password_page.dart';
 import 'login/login_page.dart';
 import 'qr_code/qr_code_page.dart';
+import 'qr_code/read_qr_code_page.dart';
 
-class LoginModule extends Module {
+class OnBoardingModule extends Module {
   @override
   List<Bind> get binds => [];
 
@@ -17,6 +18,10 @@ class LoginModule extends Module {
         ChildRoute(
           '/qr_code',
           child: (context, args) => const QrCodePage(),
+        ),
+        ChildRoute(
+          '/read_qr_code',
+          child: (context, args) => const ReadQrCodePage(),
         ),
         ChildRoute(
           '/login',
