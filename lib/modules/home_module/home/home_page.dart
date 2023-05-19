@@ -28,11 +28,7 @@ class HomePage extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            DrawerHeader(
-              padding: EdgeInsets.zero,
-              margin: EdgeInsets.zero,
-              child: Container(),
-            ),
+            const SizedBox(height: 130),
             ListTile(
                 title: const Text('Contra-cheques'),
                 onTap: () {
@@ -45,19 +41,61 @@ class HomePage extends StatelessWidget {
                   Modular.to.navigate('/home_module/clocking_module/');
                   Modular.to.pop();
                 }),
-            ListTile(title: const Text('Banco de Horas'), onTap: () {}),
-            ListTile(title: const Text('Informe de Rendimentos'), onTap: () {}),
+            ListTile(
+                title: const Text('Banco de Horas'),
+                onTap: () {
+                  Modular.to.navigate('/home_module/time_bank_module/');
+                  Modular.to.pop();
+                }),
+            ListTile(
+                title: const Text('Informe de Rendimentos'),
+                onTap: () {
+                  Modular.to
+                      .navigate('/home_module/earnings_statement_module/');
+                  Modular.to.pop();
+                }),
             ListTile(
                 title: const Text('Férias'),
                 onTap: () {
                   Modular.to.navigate('/home_module/vacation_module/');
                   Modular.to.pop();
                 }),
-            ListTile(title: const Text('Mensagens'), onTap: () {}),
-            ListTile(title: const Text('Mural de avisos'), onTap: () {}),
-            ListTile(title: const Text('Histórico Salarial'), onTap: () {}),
-            ListTile(title: const Text('Avaliação'), onTap: () {}),
-            ListTile(title: const Text('Download de arquivos'), onTap: () {}),
+            ListTile(
+                title: const Text('Mensagens'),
+                onTap: () {
+                  Modular.to.navigate('/home_module/messages_module/');
+                  Modular.to.pop();
+                }),
+            ListTile(
+                title: const Text('Mural de avisos'),
+                onTap: () {
+                  Modular.to.navigate('/home_module/notice_board_module/');
+                  Modular.to.pop();
+                }),
+            ListTile(
+                title: const Text('Histórico Salarial'),
+                onTap: () {
+                  Modular.to.navigate('/home_module/salary_history_module/');
+                  Modular.to.pop();
+                }),
+            ListTile(
+                title: const Text('Avaliação'),
+                onTap: () {
+                  Modular.to.navigate('/home_module/evaluation_module/');
+                  Modular.to.pop();
+                }),
+            ListTile(
+                title: const Text('Download de arquivos'),
+                onTap: () {
+                  Modular.to.navigate('/home_module/downloads_module/');
+                  Modular.to.pop();
+                }),
+            ListTile(
+                title: const Text('Sair'),
+                onTap: () {
+                  Modular.to.navigate('/on_boarding_module/login');
+                  Modular.to.pop();
+                }),
           ],
         ),
       ),
