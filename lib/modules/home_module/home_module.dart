@@ -2,7 +2,7 @@ import 'package:nydus_mobile/modules/paycheck_module/paycheck_module.dart';
 import 'package:package_manager/package_manager.dart';
 
 import '../clocking_module/clocking_module.dart';
-import '../profile/profile_module.dart';
+import '../profile_module/profile_module.dart';
 import '../vacation_module/vacation_module.dart';
 import 'home/home_page.dart';
 
