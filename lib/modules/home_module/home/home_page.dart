@@ -22,8 +22,44 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: const Drawer(
-        child: Text('Drawer'),
+      appBar: AppBar(),
+      endDrawer: Drawer(
+        backgroundColor: Colors.indigo.shade200,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              padding: EdgeInsets.zero,
+              margin: EdgeInsets.zero,
+              child: Container(),
+            ),
+            ListTile(
+                title: const Text('Contra-cheques'),
+                onTap: () {
+                  Modular.to.navigate('/home_module/paychek_module/');
+                  Modular.to.pop();
+                }),
+            ListTile(
+                title: const Text('Ponto'),
+                onTap: () {
+                  Modular.to.navigate('/home_module/clocking_module/');
+                  Modular.to.pop();
+                }),
+            ListTile(title: const Text('Banco de Horas'), onTap: () {}),
+            ListTile(title: const Text('Informe de Rendimentos'), onTap: () {}),
+            ListTile(
+                title: const Text('Férias'),
+                onTap: () {
+                  Modular.to.navigate('/home_module/vacation_module/');
+                  Modular.to.pop();
+                }),
+            ListTile(title: const Text('Mensagens'), onTap: () {}),
+            ListTile(title: const Text('Mural de avisos'), onTap: () {}),
+            ListTile(title: const Text('Histórico Salarial'), onTap: () {}),
+            ListTile(title: const Text('Avaliação'), onTap: () {}),
+            ListTile(title: const Text('Download de arquivos'), onTap: () {}),
+          ],
+        ),
       ),
       body: const Row(
         children: [
