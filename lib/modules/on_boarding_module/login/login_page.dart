@@ -43,7 +43,8 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 80),
               AppButton(
                 label: 'Entrar',
-                onPressed: () => Modular.to.navigate('/home_module/'),
+                onPressed: () =>
+                    Modular.to.navigate('/home_module/dashboard_module/'),
               ),
             ],
           ),

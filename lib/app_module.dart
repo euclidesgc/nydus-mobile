@@ -18,10 +18,6 @@ class AppModule extends Module {
   List<ModularRoute> get routes => [
         ModuleRoute('/on_boarding_module', module: OnBoardingModule()),
         ModuleRoute('/home_module', module: HomeModule()),
-        // ModuleRoute('/paycheck_module', module: PaycheckModule()),
-        // ModuleRoute('/clocking_module', module: ClockingModule()),
-        // ModuleRoute('/vacation_module', module: VacationModule()),
-        // ModuleRoute('/profile_module', module: ProfileModule()),
       ];
 
   @override

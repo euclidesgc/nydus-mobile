@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ClockingPage extends StatelessWidget {
-  const ClockingPage({super.key});
+class DashboardPage extends StatelessWidget {
+  const DashboardPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,7 @@ class ClockingPage extends StatelessWidget {
         foregroundColor: Colors.black,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text('Ponto'),
+        title: const Text('Dashboard'),
       ),
       body: Container(),
     );

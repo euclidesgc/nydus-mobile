@@ -7,6 +7,9 @@ class PaycheckPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.black,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         title: const Text('Contra-Cheques'),
       ),
       body: Container(),
