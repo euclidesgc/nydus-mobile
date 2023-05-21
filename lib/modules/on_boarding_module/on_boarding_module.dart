@@ -2,12 +2,15 @@ import 'package:package_manager/package_manager.dart';
 
 import 'forgot_password/forgot_password_page.dart';
 import 'login/login_page.dart';
+import 'login/login_reducer.dart';
 import 'qr_code/qr_code_page.dart';
 import 'qr_code/read_qr_code_page.dart';
 
 class OnBoardingModule extends Module {
   @override
-  List<Bind> get binds => [];
+  List<Bind> get binds => [
+        Bind.singleton((i) => LoginReducer()),
+      ];
 
   @override
   List<ModularRoute> get routes => [
@@ -25,7 +28,7 @@ class OnBoardingModule extends Module {
         ),
         ChildRoute(
           '/login',
-          child: (context, args) => const LoginPage(),
+          child: (context, args) => LoginPage(),
         ),
         ChildRoute(
           '/forgot_password',

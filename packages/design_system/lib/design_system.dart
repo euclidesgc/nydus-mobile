@@ -1,2 +1,3 @@
-export 'buttons/_buttons.dart';
-export 'text_fields/_text_fields.dart';
+export 'buttons/buttons.dart';
+export 'texts/texts.dart';
+export 'text_fields/text_fields.dart';

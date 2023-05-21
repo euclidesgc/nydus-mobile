@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
   flutter_modular: 5.0.3
   equatable: 2.0.5
+  rx_notifier: ^2.2.2
 
   event_bus:
     path: ../event_bus
