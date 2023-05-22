@@ -27,7 +27,7 @@ class OnBoardingModule extends Module {
         Bind.lazySingleton((i) {
           return AuthorizeUsecase(repository: i<AuthorizeRepository>());
         }),
-        Bind.lazySingleton((i) {
+        Bind.singleton((i) {
           return LoginReducer(usecase: i<AuthorizeUsecase>());
         }),
       ];
