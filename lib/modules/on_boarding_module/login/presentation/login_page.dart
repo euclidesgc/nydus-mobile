@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nydus_mobile/modules/on_boarding_module/login/login_states.dart';
 import 'package:package_manager/package_manager.dart';
+
+import 'login_states.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -53,7 +54,7 @@ class LoginForm extends StatelessWidget {
 
     return Form(
       key: formKey,
-      onChanged: () => validateFormAction.call(),
+      onChanged: () => validateFormAction(),
       child: Column(
         children: [
           RxBuilder(builder: (context) {
@@ -83,13 +84,14 @@ class LoginForm extends StatelessWidget {
           const SizedBox(height: 80),
           RxBuilder(
             builder: (context) {
-              return AppButton(
-                label: 'Entrar',
-                onPressed: formIsValid.value
-                    ? () =>
-                        Modular.to.navigate('/home_module/dashboard_module/')
-                    : null,
-              );
+              if (loginState.value == LoginState.loading) {
+                return const CircularProgressIndicator();
+              } else {
+                return AppButton(
+                  label: 'Entrar',
+                  onPressed: formIsValid.value ? () => loginAction() : null,
+                );
+              }
             },
           ),
         ],

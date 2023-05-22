@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:client_http/src/client_http/client_http.dart';
 import 'package:client_http/src/errors/errors.dart';
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 
 class ClientHttpDioImpl implements ClientHttp {
   final List<Interceptor>? interceptors;
@@ -23,14 +24,14 @@ class ClientHttpDioImpl implements ClientHttp {
     Map<String, dynamic>? headers,
     Options? options,
   }) async {
-    Dio dio = Dio(BaseOptions(baseUrl: baseUrl ?? ''));
+    Dio dio = DioForNative(BaseOptions(baseUrl: baseUrl ?? ''));
 
     if (interceptors != null && interceptors!.isNotEmpty) {
       dio.interceptors.addAll(interceptors!);
     }
 
     final defaultHeaders = headers?.cast<String, dynamic>() ?? {}
-      ..addAll(_getDefaultHeaders(url));
+      ..addAll(_getDefaultHeaders());
 
     final jsonBody = body != null ? jsonEncode(body) : null;
 
@@ -108,8 +109,8 @@ class ClientHttpDioImpl implements ClientHttp {
             throw UnexpectedError(message: response.requestOptions.path);
         }
       } else {
-        log('🔴 Error - Unexpected ERROR - ${error.response!.statusCode}');
-        throw UnexpectedError(message: error.response!.requestOptions.path);
+        log('🔴 Error - Unexpected ERROR - $error');
+        throw UnexpectedError(message: error.toString());
       }
     } catch (error, stack) {
       log(
@@ -151,7 +152,7 @@ class ClientHttpDioImpl implements ClientHttp {
     }
   }
 
-  static Map<String, String> _getDefaultHeaders(String path) {
+  static Map<String, String> _getDefaultHeaders() {
     return {
       "accept": "application/json, text/plain, */*",
       "content-type": "application/json",

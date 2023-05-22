@@ -7,8 +7,17 @@ final passwordErrorText = RxNotifier<String?>(null);
 final userNameIsValid = RxNotifier<bool>(false);
 final passwordIsValid = RxNotifier<bool>(false);
 final formIsValid = RxNotifier<bool>(false);
+final loginState = RxNotifier<LoginState>(LoginState.idle);
 
 //Actions
 final validateUserNameAction = RxNotifier<String?>(null);
 final validatePasswordAction = RxNotifier<String?>(null);
 final validateFormAction = RxNotifier.action();
+final loginAction = RxNotifier.action();
+
+enum LoginState {
+  loading,
+  success,
+  error,
+  idle,
+}
