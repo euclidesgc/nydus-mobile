@@ -13,12 +13,13 @@ class LoginReducer extends RxReducer {
     on(() => [validateUserNameAction.value], _validateUserName);
     on(() => [validatePasswordAction.value], _validatePassword);
     on(
-        () => [
-              validateUserNameAction.value,
-              validatePasswordAction.value,
-              validateFormAction.value
-            ],
-        _validateForm);
+      () => [
+        validateUserNameAction.value,
+        validatePasswordAction.value,
+        validateFormAction.value,
+      ],
+      _validateForm,
+    );
     on(() => [loginAction.value], _login);
   }
 
@@ -65,9 +66,10 @@ class LoginReducer extends RxReducer {
           password: validatePasswordAction.value!,
         ),
       );
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 3));
       loginState.value = LoginState.success;
       log('$response', name: 'Response');
+
       Modular.to.navigate('/home_module/dashboard_module/');
     } catch (error, stack) {
       loginState.value = LoginState.error;

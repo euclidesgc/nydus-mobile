@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:package_manager/package_manager.dart';
@@ -13,19 +12,24 @@ class AuthorizeDatasourceImpl implements AuthorizeDatasource {
 
   @override
   Future<AuthResponseModel> call({required AuthParamsModel authParams}) async {
-    const url = 'https://98f7-177-55-192-61.ngrok-free.app/login';
+    const path = '/oauth/connect/token';
 
-    final encodedParams = base64Encode(
-      utf8.encode('${authParams.login}:${authParams.password}'),
-    );
+    const clientId = String.fromEnvironment('CLIENT_ID');
+    const clientSecret = String.fromEnvironment('CLIENT_SECRET');
+    const grantType = String.fromEnvironment('GRANT_TYPE');
 
     try {
       final response = await clientHttp.request(
-        url: url,
+        url: path,
         verb: HttpVerb.POST,
-        headers: {
-          "Authorization": "Basic $encodedParams",
-        },
+        body: FormData.fromMap({
+          "client_id": clientId,
+          "client_secret": clientSecret,
+          "grant_type": grantType,
+          "userName": authParams.login,
+          "password": authParams.password,
+          "idAssinatura": 395 //Deve buscar do QRCODE
+        }),
       );
 
       final data = Map<String, dynamic>.from(response.data);

@@ -1,5 +1,5 @@
 import '../entities/entities.dart';
 
-abstract class AuthorizeRepository {
+abstract interface class AuthorizeRepository {
   Future<AuthResponseEntity> call({required AuthParamsEntity authParams});
 }
