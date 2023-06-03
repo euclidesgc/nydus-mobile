@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:client_http/src/client_http/client_http.dart';
@@ -12,7 +11,7 @@ class ClientHttpDioImpl implements ClientHttp {
 
   ClientHttpDioImpl({
     this.interceptors,
-    this.baseUrl,
+    this.baseUrl = const String.fromEnvironment('BASE_URL'),
   });
 
   @override
@@ -33,7 +32,7 @@ class ClientHttpDioImpl implements ClientHttp {
     final defaultHeaders = headers?.cast<String, dynamic>() ?? {}
       ..addAll(_getDefaultHeaders());
 
-    final jsonBody = body != null ? jsonEncode(body) : null;
+    // final Object? jsonBody = body is Map ? body : body?.toJson();
 
     final defaultOptions = options ??
         Options(
@@ -54,28 +53,28 @@ class ClientHttpDioImpl implements ClientHttp {
         case HttpVerb.POST:
           response = await dio.post(
             url,
-            data: jsonBody,
+            data: body,
             options: defaultOptions,
           );
           break;
         case HttpVerb.PUT:
           response = await dio.put(
             url,
-            data: jsonBody,
+            data: body,
             options: defaultOptions,
           );
           break;
         case HttpVerb.PATCH:
           response = await dio.patch(
             url,
-            data: jsonBody,
+            data: body,
             options: defaultOptions,
           );
           break;
         case HttpVerb.DELETE:
           response = await dio.delete(
             url,
-            data: jsonBody,
+            data: body,
             options: defaultOptions,
           );
           break;
@@ -129,7 +128,7 @@ class ClientHttpDioImpl implements ClientHttp {
       case 200:
       case 201:
       case 202:
-        log('✅ - ${response.statusCode}');
+        log('✅ ${response.realUri} - StatusCode: ${response.statusCode}');
         return ClientResponse(
           statusCode: response.statusCode!,
           data: response.data,
@@ -138,7 +137,7 @@ class ClientHttpDioImpl implements ClientHttp {
               : Map<String, dynamic>.from(response.headers.map),
         );
       case 204:
-        log('✅ - ${response.statusCode}');
+        log('✅ ${response.realUri} - StatusCode: ${response.statusCode}');
         return ClientResponse(
           statusCode: response.statusCode!,
           data: null,
@@ -147,7 +146,7 @@ class ClientHttpDioImpl implements ClientHttp {
               : Map<String, dynamic>.from(response.headers.map),
         );
       default:
-        log('🔴 Error - Unexpected ERROR - ${response.statusCode}');
+        log('🔴 Error - Unexpected ERROR - StatusCode: ${response.statusCode}');
         throw UnexpectedError(message: response.requestOptions.path);
     }
   }
