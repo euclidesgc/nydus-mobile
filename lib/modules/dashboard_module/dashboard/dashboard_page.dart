@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:package_manager/package_manager.dart';
+
+import '../../shared/user_session/user_session.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -12,7 +15,12 @@ class DashboardPage extends StatelessWidget {
         elevation: 0,
         title: const Text('Dashboard'),
       ),
-      body: Container(),
+      body: SizedBox(
+        child: Center(
+          child:
+              Text('Dashboard ${Modular.get<UserSession>().perfilEntity.name}'),
+        ),
+      ),
     );
   }
 }
