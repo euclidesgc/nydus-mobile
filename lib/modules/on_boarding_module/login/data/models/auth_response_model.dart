@@ -1,78 +1,76 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class AuthResponseModel {
-  final String? accessToken;
-  final int? expires;
-  final String? refreshToken;
+  final String accessToken;
+  final int expiresIn;
+  final String tokenType;
+  final String refreshToken;
 
   AuthResponseModel({
-    this.accessToken,
-    this.expires,
-    this.refreshToken,
-  });
-
-  AuthResponseModel.empty({
-    this.accessToken = '',
-    this.expires = 0,
-    this.refreshToken = '',
+    required this.accessToken,
+    required this.expiresIn,
+    required this.tokenType,
+    required this.refreshToken,
   });
 
   AuthResponseModel copyWith({
     String? accessToken,
-    int? expires,
+    int? expiresIn,
+    String? tokenType,
     String? refreshToken,
   }) {
     return AuthResponseModel(
       accessToken: accessToken ?? this.accessToken,
-      expires: expires ?? this.expires,
+      expiresIn: expiresIn ?? this.expiresIn,
+      tokenType: tokenType ?? this.tokenType,
       refreshToken: refreshToken ?? this.refreshToken,
     );
   }
 
   Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    if (accessToken != null) {
-      result.addAll({'access_token': accessToken});
-    }
-    if (expires != null) {
-      result.addAll({'expires': expires});
-    }
-    if (refreshToken != null) {
-      result.addAll({'refresh_token': refreshToken});
-    }
-
-    return result;
+    return <String, dynamic>{
+      'access_token': accessToken,
+      'expires_in': expiresIn,
+      'token_type': tokenType,
+      'refresh_token': refreshToken,
+    };
   }
 
   factory AuthResponseModel.fromMap(Map<String, dynamic> map) {
     return AuthResponseModel(
-      accessToken: map['access_token'],
-      expires: map['expires']?.toInt(),
-      refreshToken: map['refresh_token'],
+      accessToken: map['access_token'] as String,
+      expiresIn: map['expires_in'] as int,
+      tokenType: map['token_type'] as String,
+      refreshToken: map['refresh_token'] as String,
     );
   }
 
   String toJson() => json.encode(toMap());
 
   factory AuthResponseModel.fromJson(String source) =>
-      AuthResponseModel.fromMap(json.decode(source));
+      AuthResponseModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() =>
-      'AuthResponseModel(access_token: $accessToken, expires: $expires, refresh_token: $refreshToken)';
+  String toString() {
+    return 'AuthResponseModel(access_token: $accessToken, expires_in: $expiresIn, token_type: $tokenType, refresh_token: $refreshToken)';
+  }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(covariant AuthResponseModel other) {
     if (identical(this, other)) return true;
 
-    return other is AuthResponseModel &&
-        other.accessToken == accessToken &&
-        other.expires == expires &&
+    return other.accessToken == accessToken &&
+        other.expiresIn == expiresIn &&
+        other.tokenType == tokenType &&
         other.refreshToken == refreshToken;
   }
 
   @override
-  int get hashCode =>
-      accessToken.hashCode ^ expires.hashCode ^ refreshToken.hashCode;
+  int get hashCode {
+    return accessToken.hashCode ^
+        expiresIn.hashCode ^
+        tokenType.hashCode ^
+        refreshToken.hashCode;
+  }
 }
