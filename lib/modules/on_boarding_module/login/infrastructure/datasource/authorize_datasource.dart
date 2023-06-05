@@ -1,5 +1,5 @@
 import '../../data/models/models.dart';
 
-abstract class AuthorizeDatasource {
+abstract interface class AuthorizeDatasource {
   Future<AuthResponseModel> call({required AuthParamsModel authParams});
 }

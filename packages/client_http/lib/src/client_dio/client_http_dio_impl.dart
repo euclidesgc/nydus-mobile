@@ -32,8 +32,6 @@ class ClientHttpDioImpl implements ClientHttp {
     final defaultHeaders = headers?.cast<String, dynamic>() ?? {}
       ..addAll(_getDefaultHeaders());
 
-    // final Object? jsonBody = body is Map ? body : body?.toJson();
-
     final defaultOptions = options ??
         Options(
           headers: defaultHeaders,
@@ -83,33 +81,29 @@ class ClientHttpDioImpl implements ClientHttp {
       }
     } on DioError catch (error) {
       if (error.response != null) {
+        final statusCode = error.response!.statusCode;
+        final message = error.response!.statusMessage;
+        final path = error.response!.requestOptions.path;
+        log('🔴 Error: StatusCode - $statusCode - Path: $path');
+
         switch (error.response!.statusCode) {
           case 400:
-            log('🔴 Error - ${error.response!.statusCode}');
-            throw BadRequestError(message: response.requestOptions.path);
+            throw BadRequestError(message: message);
           case 401:
-            log('🔴 Error - ${error.response!.statusCode}');
-            throw UnauthorizedError(message: response.requestOptions.path);
+            throw UnauthorizedError(message: message);
           case 403:
-            log('🔴 Error - ${error.response!.statusCode}');
-            throw ForbiddenError(message: response.requestOptions.path);
+            throw ForbiddenError(message: message);
           case 404:
-            log('🔴 Error - ${error.response!.statusCode}');
-            throw NotFoundError(message: response.requestOptions.path);
+            throw NotFoundError(message: message);
           case 422:
-            log('🔴 Error - ${error.response!.statusCode}');
-            throw UnprocessableEntityError(
-                message: response.requestOptions.path);
+            throw UnprocessableEntityError(message: message);
           case 500:
-            log('🔴 Error - ${error.response!.statusCode}');
-            throw ServerError(message: response.requestOptions.path);
+            throw ServerError(message: message);
           default:
-            log('🔴 Error - Unexpected ERROR - ${error.response!.statusCode}');
-            throw UnexpectedError(message: response.requestOptions.path);
+            throw UnexpectedError(message: message);
         }
       } else {
-        log('🔴 Error - Unexpected ERROR - $error');
-        throw UnexpectedError(message: error.toString());
+        throw UnexpectedError(message: error.message);
       }
     } catch (error, stack) {
       log(

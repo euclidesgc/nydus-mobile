@@ -1,5 +1,6 @@
-import 'package:nydus_mobile/modules/paycheck_module/paycheck/paycheck_page.dart';
 import 'package:package_manager/package_manager.dart';
+
+import 'paycheck/paycheck_page.dart';
 
 class PaycheckModule extends Module {
   @override

@@ -33,7 +33,10 @@ Future<void> _removePubspecLock(Directory directory) async {
 }
 
 Future<void> _runCommandForPackages(
-    Directory directory, String command, List<String> arguments) async {
+  Directory directory,
+  String command,
+  List<String> arguments,
+) async {
   final packageList = _findPackages(directory);
 
   final futures = <Future<void>>[];
@@ -47,7 +50,10 @@ Future<void> _runCommandForPackages(
 }
 
 Future<void> _runCommand(
-    Directory directory, String command, List<String> arguments) async {
+  Directory directory,
+  String command,
+  List<String> arguments,
+) async {
   print('⏩️ Running "$command ${arguments.join(' ')}" in ${directory.path}');
 
   final receivePort = ReceivePort();
@@ -74,7 +80,8 @@ void _runCommandInIsolate(dynamic message) {
       .then((result) {
     if (result.exitCode != 0) {
       print(
-          '🛑 Failed to run command: $command ${arguments.join(' ')} in $workingDirectory');
+        '🛑 Failed to run command: $command ${arguments.join(' ')} in $workingDirectory',
+      );
       print(result.stderr);
       exitCode = result.exitCode;
     } else {

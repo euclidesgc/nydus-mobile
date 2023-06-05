@@ -6,10 +6,10 @@ import '../../domain/repositories/authorize_repository.dart';
 import '../datasource/authorize_datasource.dart';
 
 class AuthorizeRepositoryImpl implements AuthorizeRepository {
-  final AuthorizeDatasource authorizeDatasource;
+  final AuthorizeDatasource datasource;
 
   const AuthorizeRepositoryImpl({
-    required this.authorizeDatasource,
+    required this.datasource,
   });
 
   @override
@@ -22,7 +22,7 @@ class AuthorizeRepositoryImpl implements AuthorizeRepository {
         password: authParams.password,
       );
 
-      final response = await authorizeDatasource(authParams: authParamsModel);
+      final response = await datasource(authParams: authParamsModel);
 
       return AuthResponseEntity(
         accessToken: response.accessToken,

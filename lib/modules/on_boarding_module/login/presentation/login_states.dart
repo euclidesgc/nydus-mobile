@@ -4,18 +4,22 @@ import 'package:package_manager/package_manager.dart';
 final userNameErrorText = RxNotifier<String?>(null);
 final passwordErrorText = RxNotifier<String?>(null);
 
-final formIsValid = RxNotifier<bool>(false);
-final loginState = RxNotifier<LoginState>(LoginState.idle);
+final userName = RxNotifier<String?>(null);
+final password = RxNotifier<String?>(null);
+
+final loginLoading = RxNotifier(false);
+final loginError = RxNotifier(false);
+
+//computeds
+bool get formIsValid =>
+    userNameErrorText.value == null &&
+    passwordErrorText.value == null &&
+    userName.value != null &&
+    password.value != null;
 
 //Actions
 final validateUserNameAction = RxNotifier<String?>(null);
 final validatePasswordAction = RxNotifier<String?>(null);
-final validateFormAction = RxNotifier.action();
-final loginAction = RxNotifier.action();
 
-enum LoginState {
-  loading,
-  success,
-  error,
-  idle,
-}
+final loginAction = RxNotifier.action();
+final getPerfilAction = RxNotifier.action();

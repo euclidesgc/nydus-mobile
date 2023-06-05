@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:package_manager/package_manager.dart';
 
-import '../../shared/user_session/user_session.dart';
+import '../../shared/shared.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final userName = UserSession.perfil?.nome ?? '';
+
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.black,
@@ -17,8 +18,7 @@ class DashboardPage extends StatelessWidget {
       ),
       body: SizedBox(
         child: Center(
-          child:
-              Text('Dashboard ${Modular.get<UserSession>().perfilEntity.name}'),
+          child: Text('Dashboard - $userName'),
         ),
       ),
     );

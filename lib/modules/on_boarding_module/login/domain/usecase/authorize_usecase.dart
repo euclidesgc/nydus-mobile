@@ -13,7 +13,8 @@ class AuthorizeUsecase {
   Future<AuthResponseEntity> call({required AuthParamsEntity authParams}) {
     try {
       return repository(authParams: authParams);
-    } catch (error, stack) {
+    } 
+    catch (error, stack) {
       log('📛 Error', error: error, stackTrace: stack);
 
       rethrow;

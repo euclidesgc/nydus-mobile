@@ -7,13 +7,14 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          body: Image.asset(
-        'assets/images/splash_screen.jpg',
-        package: 'design_system',
-        fit: BoxFit.cover,
-        width: double.infinity,
-        height: double.infinity,
-      )),
+        body: Image.asset(
+          'assets/images/splash_screen.jpg',
+          package: 'design_system',
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
+        ),
+      ),
     );
   }
 }

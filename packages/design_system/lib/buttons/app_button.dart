@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppButton extends StatelessWidget {
   final String label;
   final EdgeInsetsGeometry? padding;
-  final Function()? onPressed;
+  final void Function()? onPressed;
 
   const AppButton({
     Key? key,
